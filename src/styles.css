@@ -376,3 +376,95 @@ form > span { display: flex !important }
   .pre-pct { right: 24px; bottom: 24px }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important } }
+
+/* ── reels (shared video player) ── */
+.reel { position: relative; aspect-ratio: 9/16; border-radius: 20px; overflow: hidden; background: #000; cursor: pointer; isolation: isolate; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7) }
+.reel video { width: 100%; height: 100%; object-fit: cover; display: block }
+.reel-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .25), transparent 25%, transparent 60%, rgba(10, 8, 7, .85)); pointer-events: none }
+.reel-bar { position: absolute; left: 14px; right: 14px; top: 12px; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .25); overflow: hidden }
+.reel-bar span { display: block; height: 100%; background: var(--grad); transform-origin: left }
+.reel-play { position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; margin: -35px 0 0 -35px; border-radius: 50%; background: rgba(15, 12, 10, .55); backdrop-filter: blur(6px); border: 1px solid var(--gold); color: var(--gold-2); display: grid; place-items: center; padding-left: 4px }
+.reel-sound { position: absolute; right: 14px; top: 26px; width: 38px; height: 38px; border-radius: 50%; background: rgba(15, 12, 10, .55); color: #fff; display: grid; place-items: center; backdrop-filter: blur(6px); transition: .3s }
+.reel-sound:hover { background: var(--gold); color: var(--ink) }
+.reel-cap { position: absolute; left: 18px; right: 18px; bottom: 16px; color: #fff; pointer-events: none }
+.reel-cap b { display: block; font-family: var(--serif); font-size: 1.3rem; font-weight: 600; line-height: 1.2 }
+.reel-cap small { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2) }
+
+/* ── award moments ── */
+.moments { margin-top: 90px }
+.moments-head { text-align: center; margin-bottom: 30px }
+.moments-head .eyebrow::after { content: ""; width: 36px; height: 1px; background: currentColor }
+.moments-grid { display: grid; grid-template-columns: .8fr 1.2fr 1fr; gap: 22px; align-items: stretch }
+.moment .reel { height: 100%; aspect-ratio: auto; min-height: 460px }
+.moment-img { position: relative; height: 100%; min-height: 460px; border-radius: 20px; overflow: hidden; cursor: zoom-in; border: 1px solid var(--line) }
+.moment-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s }
+.moment-img:hover img { transform: scale(1.06) }
+.moment-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 8, 7, .9)) }
+.moment-img .reel-cap { z-index: 2 }
+
+/* ── news ── */
+.news { background: var(--cream) }
+.news-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 56px }
+.news-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 28px 24px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow .4s, border-color .4s; position: relative; overflow: hidden }
+.news-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform .5s }
+.news-card:hover { box-shadow: 0 30px 60px -25px rgba(60, 40, 20, .3); border-color: var(--gold) }
+.news-card:hover::before { transform: scaleX(1) }
+.news-top { display: flex; justify-content: space-between; align-items: center; gap: 10px }
+.news-outlet { display: inline-flex; align-items: center; gap: 8px; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; color: var(--gold-deep) }
+.news-date { font-size: .78rem; color: var(--muted) }
+.news-card h3 { font-size: 1.35rem; line-height: 1.2 }
+.news-card p { font-size: .9rem; color: var(--muted); flex: 1 }
+.news-link { display: inline-flex; align-items: center; gap: 8px; font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; color: var(--ink) }
+.news-card:hover .news-link { color: var(--gold-deep) }
+
+/* ── videos ── */
+.videos { background: radial-gradient(ellipse at 20% 50%, #2c2014, var(--ink) 60%); overflow: hidden }
+.videos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center }
+.reels { display: grid; grid-template-columns: 1fr 1fr; gap: 24px }
+.reel-wrap.down { margin-top: 70px }
+
+/* ── academy poster button ── */
+.course-poster { display: flex; align-items: center; gap: 14px; margin-top: 20px; padding: 8px; padding-right: 18px; border: 1px solid var(--line); border-radius: 12px; color: var(--gold-2); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; transition: .3s }
+.course-poster:hover { background: rgba(201, 164, 92, .1); border-color: var(--gold) }
+.course-poster img { width: 54px; height: 72px; object-fit: cover; border-radius: 8px }
+.course-poster span { display: inline-flex; align-items: center; gap: 8px }
+
+/* ── instagram ── */
+.instagram { background: var(--cream-2) }
+.ig-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: 44px }
+.ig-follow { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 24px }
+.ig-handle { display: flex; align-items: center; gap: 14px }
+.ig-ring { width: 58px; height: 58px; border-radius: 50%; padding: 3px; background: conic-gradient(#f9ce34, #ee2a7b, #6228d7, #f9ce34); display: grid }
+.ig-ring span { border-radius: 50%; background: var(--ink); border: 3px solid var(--cream-2); display: grid; place-items: center; font-family: var(--serif); font-style: italic; font-size: 1.6rem; color: var(--gold-2) }
+.ig-handle b { display: block; font-weight: 600 }
+.ig-handle small { color: var(--muted); font-size: .82rem }
+.ig-btns { display: flex; gap: 10px }
+.ig-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px }
+.ig-item { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 10px; background: var(--ink) }
+.ig-item img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transition: transform .8s }
+.ig-over { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; background: rgba(15, 12, 10, .5); opacity: 0; transition: opacity .4s }
+.ig-item:hover img { transform: scale(1.08) }
+.ig-item:hover .ig-over { opacity: 1 }
+.ig-embeds { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; align-items: start }
+.ig-embeds .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important }
+
+@media (max-width: 1024px) {
+  .moments-grid { grid-template-columns: 1fr 1fr }
+  .moments-grid > :first-child { grid-row: span 2 }
+  .moment-img, .moment .reel { min-height: 300px }
+  .news-grid { grid-template-columns: 1fr 1fr }
+  .videos-grid { grid-template-columns: 1fr; gap: 50px }
+  .reels { max-width: 560px }
+}
+@media (max-width: 640px) {
+  .moments-grid { grid-template-columns: 1fr }
+  .moments-grid > :first-child { grid-row: auto }
+  .moment .reel { aspect-ratio: 9/16; min-height: 0 }
+  .moment-img { min-height: 340px }
+  .news-grid { grid-template-columns: 1fr }
+  .reels { gap: 14px }
+  .reel-wrap.down { margin-top: 40px }
+  .reel-cap b { font-size: 1.05rem }
+  .ig-grid { grid-template-columns: repeat(3, 1fr); gap: 6px }
+  .ig-follow { gap: 14px }
+}

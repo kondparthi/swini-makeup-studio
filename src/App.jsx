@@ -5,6 +5,7 @@ import { Preloader, Cursor, Navbar, Floaters } from './components/Chrome'
 import Hero, { Marquee } from './components/Hero'
 import { About, Awards, Portfolio, Services, Academy, Testimonials, Contact, Footer } from './components/Sections'
 import { scrollTo } from './components/ui'
+import { News, Videos, Instagram } from './components/Media'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -39,10 +40,13 @@ export default function App() {
         <Marquee />
         <About />
         <Awards />
+        <News />
         <Portfolio />
         <Services onPick={pick} />
         <Academy onPick={pick} />
+        <Videos />
         <Testimonials />
+        <Instagram />
         <Contact service={service} setService={setService} />
       </main>
       <Footer />

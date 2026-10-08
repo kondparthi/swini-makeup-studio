@@ -144,6 +144,13 @@ export function Icon({ name, size = 24 }) {
     left: <path d="M15 5l-7 7 7 7" />,
     right: <path d="M9 5l7 7-7 7" />,
     spark: <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />,
+    threads: <path d="M16.5 11.2c-.3-2.4-1.9-3.7-4.3-3.7-2.6 0-4 1.6-4 3.4M16.6 11.3c2 .9 3 2.4 2.8 4.3-.3 3.1-3.2 5.4-7.3 5.4C7 21 4 17.6 4 12s3-9 8.1-9c3.8 0 6.4 1.8 7.4 5M16.6 11.3c-1.4-.6-3-.8-4.6-.6-2.1.3-3.4 1.4-3.3 2.9.1 1.6 1.6 2.5 3.4 2.4 2.7-.2 4.4-1.9 4.5-4.7z" />,
+    play: <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />,
+    pause: <><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none" /><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none" /></>,
+    sound: <><path d="M11 5 6 9H3v6h3l5 4z" /><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" /></>,
+    mute: <><path d="M11 5 6 9H3v6h3l5 4z" /><path d="M22 9l-6 6M16 9l6 6" /></>,
+    external: <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />,
+    news: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 8h10M7 12h10M7 16h6" /></>,
   }
   return <svg {...p}>{icons[name]}</svg>
 }

@@ -11,10 +11,10 @@ export const site = {
   address: 'Opp. Aravinda Hospital, Zaheerabad, Telangana',
   timings: 'Mon – Sun · 9:00 AM – 8:00 PM', // TODO confirm with client
   mapQuery: 'Aravinda Hospital Zaheerabad',
+  instagramHandle: '@swini_salon_official',
   social: {
-    instagram: 'https://www.instagram.com/', // TODO client handle
-    facebook: 'https://www.facebook.com/',
-    youtube: 'https://www.youtube.com/',
+    instagram: 'https://www.instagram.com/swini_salon_official/',
+    threads: 'https://www.threads.com/@swini_salon_official',
   },
 }
 
@@ -37,11 +37,62 @@ export const stats = [
 export const roles = ['Celebrity Makeup Artist', 'Pro Hair Stylist', 'Trainer & Mentor', 'Director, SBMS – Zaheerabad']
 
 export const awards = [
-  { img: 'award-telangana.jpg', by: 'SwiftNLift Media Group', title: 'Telangana Business Excellence Award', sub: 'Best Makeup Transformation' },
+  { img: 'award-telangana.jpg', by: '2024 · SwiftNLift Media Group', title: 'Telangana Business Excellence Award', sub: 'Best Makeup Transformation' },
   { img: 'award-beauty-2024.jpg', by: '2024 · Saikala Enterprises', title: 'Beauty Business Excellence Awards', sub: 'Business Supply Chain Excellence' },
   { img: 'award-iba-2023.jpg', by: '2023 · Indian Beauty Association', title: 'Best Makeup Artist Zaheerabad', sub: 'Pro Makeup Artist & Pro Hair Stylist' },
   { img: 'award-siiba.jpg', by: '6th Award · SIIBA', title: 'Best Makeup Artist', sub: 'South India Influencer & Bloggers Awards' },
 ]
+
+// Photos & videos from award nights (shown under the award cards)
+export const awardMoments = [
+  { type: 'video', src: 'videos/award-night.mp4', poster: 'videos/award-night.jpg', title: 'Telangana Business Excellence Awards 2024', sub: 'Award night · Hyderabad' },
+  { type: 'image', img: 'award-telangana-stage.jpg', title: 'Receiving the Telangana Business Excellence Award', sub: 'Presented by SwiftNLift Media Group, 2024' },
+  { type: 'image', img: 'award-stage.jpg', title: 'On stage at a beauty industry awards event', sub: 'Recognition for makeup artistry' },
+]
+
+// Press coverage — add new articles here
+export const news = [
+  {
+    outlet: 'ANI News',
+    date: 'July 4, 2024',
+    title: 'Telangana Business Excellence Awards 2024: A Night of Celebration and Achievement',
+    text: 'Coverage of the SwiftNLift Media Group awards evening honouring Telangana entrepreneurs — Mrs. Gangavarupu Manikeshwari of Swini Makeup Studio is among the awardees.',
+    url: 'https://www.aninews.in/news/business/telangana-business-excellence-awards-2024-a-night-of-celebration-and-achievement20240704171054/',
+  },
+  {
+    outlet: 'Business Standard',
+    date: 'July 4, 2024',
+    title: 'Telangana Business Excellence Awards 2024: A Night of Celebration and Achievement',
+    text: 'The awards night held in Hyderabad, featured in Business Standard press releases, lists Swini Makeup Studio among the honoured businesses.',
+    url: 'https://www.business-standard.com/content/press-releases-ani/telangana-business-excellence-awards-2024-a-night-of-celebration-and-achievement-124070400772_1.html',
+  },
+  {
+    outlet: 'SwiftNLift',
+    date: '2024',
+    title: 'Business Excellence Awards 2024 — Awardees',
+    text: 'The official awardee list from the organisers, including Swini Makeup Studio, Zaheerabad.',
+    url: 'https://swiftnlift.com/business-excellence-awards-2024-2/',
+  },
+  {
+    outlet: 'Threads',
+    date: '',
+    title: 'Swini Studio Academy — Secunderabad',
+    text: 'Announcement from the studio about Swini Studio Academy in Secunderabad.',
+    url: 'https://www.threads.com/@swini_salon_official/post/DcLfPtAiPXE/swini-studio-acedemy-secundrabad/',
+  },
+]
+
+// Short videos (vertical reels)
+export const videos = [
+  { src: 'videos/training-session.mp4', poster: 'videos/training-session.jpg', title: 'Live Training Session', sub: 'Hands-on makeup class with students' },
+  { src: 'videos/award-night.mp4', poster: 'videos/award-night.jpg', title: 'Award Night', sub: 'Telangana Business Excellence Awards 2024' },
+]
+
+// Instagram section.
+// Paste real post links here (e.g. 'https://www.instagram.com/p/XXXXXXXX/') to show official embedded posts.
+// While this list is empty, the section shows the studio photos below as an Instagram-style grid linking to the profile.
+export const instagramPosts = []
+export const instagramGrid = ['bridal-2.jpg', 'award-telangana-stage.jpg', 'bridal-4.jpg', 'founder.jpg', 'bridal-1.jpg', 'workshop-poster.jpg', 'bridal-3.jpg', 'award-stage.jpg']
 
 // cat: bridal | party | classic | pmu   size: '' | 'tall' | 'wide'
 export const portfolio = [
@@ -84,6 +135,13 @@ export const courses = [
     tag: '3 Days · Hyderabad',
     text: 'Intensive masterclass on professional makeup, bridal hairstyling and beauty techniques — for beginners and upcoming artists.',
     modules: ['Skin Prep', 'Base & Contouring', 'Eye Makeup', 'Bridal Looks', 'Hairstyling', 'Live Demo'],
+  },
+  {
+    title: 'Self Makeup Workshop',
+    tag: 'Workshop · Hyderabad',
+    text: 'Learn to do your own makeup with confidence — step-by-step guidance and hands-on practice. Be your own kind of beautiful.',
+    modules: ['Learn — step-by-step guidance', 'Practice — hands-on experience', 'Empower — enhance your skills', 'Glow — boost your confidence'],
+    poster: 'workshop-poster.jpg',
   },
 ]
 

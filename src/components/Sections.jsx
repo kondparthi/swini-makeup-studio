@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { site, roles, awards, portfolio, filters, services, courses, testimonials, nav } from '../data'
+import { site, roles, awards, awardMoments, portfolio, filters, services, courses, testimonials, nav } from '../data'
 import { Reveal, SplitText, Eyebrow, Tilt, Icon, Magnetic, scrollTo, WhatsAppIcon } from './ui'
+import { AwardMoments } from './Media'
 
 const ease = [0.22, 1, 0.36, 1]
 
@@ -89,9 +90,11 @@ export function About() {
 /* ════════════ AWARDS ════════════ */
 export function Awards() {
   const [idx, setIdx] = useState(null)
+  const [mIdx, setMIdx] = useState(null)
   const list = awards.map((a) => ({ img: a.img, title: a.title }))
+  const mList = awardMoments.filter((m) => m.type === 'image').map((m) => ({ img: m.img, title: m.title }))
   return (
-    <section className="awards dark">
+    <section className="awards dark" id="awards">
       <div className="awards-bg" aria-hidden="true">AWARDS</div>
       <div className="wrap">
         <div className="center">
@@ -109,8 +112,10 @@ export function Awards() {
             </motion.div>
           ))}
         </div>
+        <AwardMoments onOpen={(img) => setMIdx(mList.findIndex((m) => m.img === img))} />
       </div>
       <Lightbox list={list} index={idx} setIndex={setIdx} onClose={() => setIdx(null)} />
+      <Lightbox list={mList} index={mIdx} setIndex={setMIdx} onClose={() => setMIdx(null)} />
     </section>
   )
 }
@@ -190,6 +195,7 @@ export function Services({ onPick }) {
 /* ════════════ ACADEMY ════════════ */
 export function Academy({ onPick }) {
   const [tab, setTab] = useState(0)
+  const [poster, setPoster] = useState(null)
   const c = courses[tab]
   return (
     <section id="academy" className="academy dark">
@@ -215,6 +221,12 @@ export function Academy({ onPick }) {
               <motion.div className="chips" initial="h" animate="s" transition={{ staggerChildren: 0.04, delayChildren: 0.15 }}>
                 {c.modules.map((m) => <motion.span key={m} variants={{ h: { opacity: 0, y: 14 }, s: { opacity: 1, y: 0 } }}>✦ {m}</motion.span>)}
               </motion.div>
+              {c.poster && (
+                <button className="course-poster" onClick={() => setPoster(0)}>
+                  <img src={`images/${c.poster}`} alt={`${c.title} poster`} />
+                  <span>View workshop poster <Icon name="arrow" size={14} /></span>
+                </button>
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -239,6 +251,7 @@ export function Academy({ onPick }) {
           </motion.div>
         </div>
       </div>
+      <Lightbox list={c.poster ? [{ img: c.poster, title: c.title }] : []} index={c.poster ? poster : null} setIndex={setPoster} onClose={() => setPoster(null)} />
     </section>
   )
 }
@@ -355,8 +368,7 @@ export function Footer() {
             <p>Award-winning bridal makeup, hairstyling and beauty academy by {site.owner}, Zaheerabad.</p>
             <div className="socials">
               <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="insta" size={18} /></a>
-              <a href={site.social.facebook} target="_blank" rel="noopener" aria-label="Facebook"><Icon name="fb" size={18} /></a>
-              <a href={site.social.youtube} target="_blank" rel="noopener" aria-label="YouTube"><Icon name="yt" size={18} /></a>
+              <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"><Icon name="threads" size={18} /></a>
               <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" aria-label="WhatsApp"><WhatsAppIcon size={18} /></a>
             </div>
           </div>
