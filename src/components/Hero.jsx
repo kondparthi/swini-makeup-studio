@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
-import { stats, site, marquee } from '../data'
+import { stats, site, marquee, ratings } from '../data'
+import { RatingBadge } from './Chrome'
 import { Counter, Icon, Magnetic, scrollTo } from './ui'
 
 /* Gold dust particles drifting upward */
@@ -85,6 +86,9 @@ export default function Hero({ ready }) {
           <motion.p className="hero-p" {...a(0.8)}>
             Award-winning bridal makeup, hairstyling and professional makeup training by celebrity makeup artist <b>{site.owner}</b>.
           </motion.p>
+          <motion.div className="rating-row hero-ratings" {...a(0.9)}>
+            {ratings.map((r) => <RatingBadge key={r.platform} r={r} />)}
+          </motion.div>
           <motion.div className="hero-btns" {...a(0.95)}>
             <Magnetic><button className="btn btn-gold" onClick={() => scrollTo('contact')}>Book Your Look <Icon name="arrow" size={18} /></button></Magnetic>
             <Magnetic><button className="btn btn-line" onClick={() => scrollTo('academy')}>Join the Academy</button></Magnetic>

@@ -145,12 +145,27 @@ export const courses = [
   },
 ]
 
-// TODO: replace with real client reviews (with permission) or Google reviews
+// Ratings shown in the banner and testimonials header.
+// logo: optional — drop the official logo file into public/images and put its name here (e.g. 'google-logo.png').
+// url: optional — your Google / Justdial review page link.
+export const ratings = [
+  { platform: 'Justdial', score: 4.9, logo: '', url: '' },
+  { platform: 'Google', score: 4.8, logo: '', url: '' },
+]
+
+// TODO: paste 10 real reviews from Google / Justdial (with the client's permission).
+// source: 'Google' | 'Justdial' | 'Instagram' | ''
 export const testimonials = [
-  { name: '[Client Name]', role: 'Bride · [City]', text: '[Client review — what she loved about her bridal look and the experience on her wedding day.]' },
-  { name: '[Client Name]', role: 'Engagement · [City]', text: '[Client review — engagement or reception makeup experience.]' },
-  { name: '[Student Name]', role: 'Academy Student', text: '[Student review — experience in the PMU course or masterclass.]' },
-  { name: '[Client Name]', role: 'Pre-Wedding Shoot', text: '[Client review — pre-wedding shoot makeup and hairstyling.]' },
+  { name: '[Client Name]', role: 'Bride', source: 'Google', text: '[Paste a real Google review here.]' },
+  { name: '[Client Name]', role: 'Bride', source: 'Justdial', text: '[Paste a real Justdial review here.]' },
+  { name: '[Client Name]', role: 'Engagement', source: 'Google', text: '[Paste a real Google review here.]' },
+  { name: '[Client Name]', role: 'Reception', source: 'Justdial', text: '[Paste a real Justdial review here.]' },
+  { name: '[Client Name]', role: 'Pre-Wedding Shoot', source: 'Google', text: '[Paste a real Google review here.]' },
+  { name: '[Client Name]', role: 'Party Makeup', source: 'Justdial', text: '[Paste a real Justdial review here.]' },
+  { name: '[Student Name]', role: 'PMU Course Student', source: 'Google', text: '[Paste a real Google review here.]' },
+  { name: '[Student Name]', role: 'Masterclass Student', source: 'Justdial', text: '[Paste a real Justdial review here.]' },
+  { name: '[Client Name]', role: 'Microblading', source: 'Google', text: '[Paste a real Google review here.]' },
+  { name: '[Client Name]', role: 'Self Makeup Workshop', source: 'Justdial', text: '[Paste a real Justdial review here.]' },
 ]
 
 export const marquee = ['Bridal Makeup', 'Engagement Looks', 'Pre-Wedding Shoots', 'Party Glam', 'Hairstyling', 'Microblading', 'Permanent Makeup Academy']

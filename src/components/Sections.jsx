@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { site, roles, awards, awardMoments, portfolio, filters, services, courses, testimonials, nav } from '../data'
+import { site, roles, awards, awardMoments, portfolio, filters, services, courses, testimonials, ratings, nav } from '../data'
+import { RatingBadge } from './Chrome'
 import { Reveal, SplitText, Eyebrow, Tilt, Icon, Magnetic, scrollTo, WhatsAppIcon } from './ui'
 import { AwardMoments } from './Media'
 
@@ -270,6 +271,9 @@ export function Testimonials() {
         <div className="center">
           <Eyebrow center>Testimonials</Eyebrow>
           <SplitText text="Kind words from our *brides*" />
+          <Reveal delay={0.1} className="rating-row center-row">
+            {ratings.map((r) => <RatingBadge key={r.platform} r={r} light />)}
+          </Reveal>
         </div>
         <Reveal className="t-stage" delay={0.1}>
           <span className="t-quote">“</span>
@@ -279,11 +283,12 @@ export function Testimonials() {
               transition={{ duration: 0.6, ease }} drag="x" dragConstraints={{ left: 0, right: 0 }} onDragEnd={(e, info) => { if (info.offset.x < -60) go(1); else if (info.offset.x > 60) go(-1) }}>
               <div className="stars">{'★★★★★'.split('').map((s, k) => <motion.span key={k} initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 + k * 0.07, type: 'spring' }}>{s}</motion.span>)}</div>
               <p>{t.text}</p>
-              <div className="who"><span className="av">{t.name.replace(/[[\]]/g, '')[0]}</span><div><b>{t.name}</b><small>{t.role}</small></div></div>
+              <div className="who"><span className="av">{t.name.replace(/[[\]]/g, '')[0]}</span><div><b>{t.name}</b><small>{t.role}{t.source && <> · via {t.source}</>}</small></div></div>
             </motion.div>
           </AnimatePresence>
           <div className="t-nav">
             <button onClick={() => go(-1)} aria-label="Previous"><Icon name="left" size={20} /></button>
+            <span className="t-count">{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
             <div className="dots">{testimonials.map((_, k) => <button key={k} className={k === i ? 'on' : ''} onClick={() => { setDir(k > i ? 1 : -1); setI(k) }} aria-label={`Review ${k + 1}`} />)}</div>
             <button onClick={() => go(1)} aria-label="Next"><Icon name="right" size={20} /></button>
           </div>
@@ -377,7 +382,7 @@ export function Footer() {
           <div><h4>Visit Us</h4><ul><li>{site.address}</li><li><a href={`tel:+91${site.phone}`}>{site.phoneDisplay}</a></li><li>{site.timings}</li></ul></div>
         </div>
         <div className="f-big" aria-hidden="true">Swini</div>
-        <div className="copy"><span>© {new Date().getFullYear()} Swini Makeup Studio. All rights reserved.</span><span>Designed by Keyblocks Strategy Consulting</span></div>
+        <div className="copy"><span>© {new Date().getFullYear()} Swini Makeup Studio. All rights reserved.</span><span>Designed by Madhu</span></div>
       </div>
     </footer>
   )

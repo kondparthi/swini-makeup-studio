@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring, useMotionValue } from 'framer-motion'
 import { nav, site } from '../data'
-import { Magnetic, scrollTo, WhatsAppIcon } from './ui'
+import { Magnetic, scrollTo, WhatsAppIcon, Icon } from './ui'
 
 /* ── Preloader: monogram draws in, name rises, curtain lifts ── */
 export function Preloader({ onDone }) {
@@ -118,6 +118,7 @@ export function Floaters() {
   useEffect(() => scrollYProgress.on('change', (v) => setShow(v > 0.08)), [scrollYProgress])
   return (
     <>
+      <SocialRail />
       <motion.a className="wa-float" href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hi Swini Makeup Studio, I'd like to book an appointment.")}`} target="_blank" rel="noopener"
         initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.5, type: 'spring' }} whileHover={{ scale: 1.1, rotate: 8 }} aria-label="WhatsApp">
         <WhatsAppIcon size={30} />
@@ -131,5 +132,54 @@ export function Floaters() {
         )}
       </AnimatePresence>
     </>
+  )
+}
+
+/* ── Rating badge (Justdial / Google) ── */
+export function RatingBadge({ r, light }) {
+  const full = Math.floor(r.score)
+  const part = r.score - full
+  const Tag = r.url ? 'a' : 'div'
+  return (
+    <Tag className={`rating ${light ? 'rating-light' : ''}`} {...(r.url ? { href: r.url, target: '_blank', rel: 'noopener' } : {})}>
+      <span className={`rating-logo ${r.platform.toLowerCase()}`}>
+        {r.logo ? <img src={`images/${r.logo}`} alt={r.platform} /> : r.platform[0]}
+      </span>
+      <span className="rating-body">
+        <span className="rating-top"><b>{r.score.toFixed(1)}</b><small>/5</small>
+          <span className="rating-stars" aria-label={`${r.score} out of 5 stars`}>
+            {[0, 1, 2, 3, 4].map((k) => (
+              <span key={k} className="st"><Icon name="star" size={13} /><span className="st-fill" style={{ width: `${k < full ? 100 : k === full ? part * 100 : 0}%` }}><Icon name="star" size={13} /></span></span>
+            ))}
+          </span>
+        </span>
+        <small className="rating-name">{r.platform} Rating</small>
+      </span>
+    </Tag>
+  )
+}
+
+/* ── Floating social rail — left side, vertically centred ── */
+export function SocialRail() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: site.social.instagram, label: 'Instagram', icon: <Icon name="insta" size={18} /> },
+    { href: site.social.threads, label: 'Threads', icon: <Icon name="threads" size={18} /> },
+    { href: `https://wa.me/${site.whatsapp}`, label: 'WhatsApp', icon: <WhatsAppIcon size={18} /> },
+    { href: `tel:+91${site.phone}`, label: 'Call', icon: <Icon name="phone" size={17} /> },
+  ]
+  return (
+    <motion.nav className={`social-rail ${open ? 'open' : ''}`} aria-label="Social media" initial={{ x: -80, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 2.6, type: 'spring', stiffness: 120, damping: 16 }}>
+      {links.map((l, i) => (
+        <motion.a key={l.label} href={l.href} target={l.href.startsWith('tel') ? undefined : '_blank'} rel="noopener" aria-label={l.label}
+          initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 2.8 + i * 0.1 }}>
+          {l.icon}<span className="rail-tip">{l.label}</span>
+        </motion.a>
+      ))}
+      <span className="rail-line" />
+      <button className="rail-toggle" onClick={() => setOpen(!open)} aria-label={open ? 'Hide social links' : 'Show social links'}>
+        <span>{open ? '‹' : '›'}</span>
+      </button>
+    </motion.nav>
   )
 }

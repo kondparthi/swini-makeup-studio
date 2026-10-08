@@ -103,7 +103,7 @@ h2.light, .dark h2, .dark h3 { color: #fff }
 @keyframes shimmer { to { background-position: -220% center } }
 .rot { display: inline-grid; overflow: hidden; vertical-align: bottom; color: var(--gold-2); font-style: italic; min-width: 3.6ch; padding-right: .1em }
 .rot > span { grid-area: 1/1; display: inline-block }
-.hero-p { color: rgba(255, 255, 255, .72); font-size: 1.12rem; max-width: 520px; margin-bottom: 38px }
+.hero-p { color: rgba(255, 255, 255, .72); font-size: 1.12rem; max-width: 520px; margin-bottom: 24px }
 .hero-p b { color: var(--gold-2); font-weight: 500 }
 .hero-btns { display: flex; gap: 14px; flex-wrap: wrap }
 .hero-stats { display: flex; gap: 48px; margin-top: 58px; padding-top: 30px; border-top: 1px solid var(--line) }
@@ -467,4 +467,62 @@ form > span { display: flex !important }
   .reel-cap b { font-size: 1.05rem }
   .ig-grid { grid-template-columns: repeat(3, 1fr); gap: 6px }
   .ig-follow { gap: 14px }
+}
+
+/* ── rating badges ── */
+.rating-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px }
+.center-row { justify-content: center; margin: 26px 0 0 }
+.rating { display: inline-flex; align-items: center; gap: 12px; padding: 10px 18px 10px 10px; border-radius: 60px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); backdrop-filter: blur(8px); transition: transform .35s, border-color .35s, box-shadow .35s }
+.rating:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 14px 30px -12px rgba(201, 164, 92, .45) }
+.rating-light { background: #fff }
+.rating-logo { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: #fff; font-weight: 700; font-size: 1.25rem; overflow: hidden; flex: none; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06) }
+.rating-logo img { width: 72%; height: 72%; object-fit: contain }
+.rating-logo.google { color: #4285f4 }
+.rating-logo.justdial { color: #ff6d00 }
+.rating-body { display: grid; line-height: 1.15 }
+.rating-top { display: flex; align-items: baseline; gap: 2px }
+.rating-top b { font-family: var(--serif); font-size: 1.55rem; font-weight: 700; color: var(--gold-2) }
+.rating-light .rating-top b { color: var(--ink) }
+.rating-top small { font-size: .8rem; color: rgba(255, 255, 255, .55); margin-right: 8px }
+.rating-light .rating-top small { color: var(--muted) }
+.rating-stars { display: inline-flex; gap: 1px; align-self: center }
+.st { position: relative; display: inline-flex; color: rgba(201, 164, 92, .3) }
+.st-fill { position: absolute; inset: 0 auto 0 0; overflow: hidden; color: #f5b301; display: inline-flex }
+.st-fill svg { flex: none }
+.rating-name { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .6) }
+.rating-light .rating-name { color: var(--muted) }
+.t-count { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-deep); min-width: 64px; text-align: center }
+
+/* ── floating social rail ── */
+.social-rail { position: fixed; left: 18px; top: 50%; translate: 0 -50%; z-index: 70; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 12px 8px; border-radius: 40px; background: rgba(15, 12, 10, .82); border: 1px solid var(--line); backdrop-filter: blur(10px); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, .5) }
+.social-rail a { position: relative; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: var(--gold-2); transition: background .3s, color .3s, transform .3s }
+.social-rail a:hover { background: var(--grad); color: var(--ink); transform: scale(1.12) }
+.rail-tip { position: absolute; left: calc(100% + 14px); top: 50%; translate: -8px -50%; white-space: nowrap; background: var(--ink); color: var(--gold-2); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--line); opacity: 0; pointer-events: none; transition: .3s }
+.social-rail a:hover .rail-tip { opacity: 1; translate: 0 -50% }
+.rail-line { width: 1px; height: 26px; background: linear-gradient(var(--gold), transparent) }
+@media (max-width: 640px) {
+  .social-rail { left: 8px; gap: 4px; padding: 8px 4px }
+  .social-rail a { width: 34px; height: 34px }
+  .social-rail svg { width: 15px; height: 15px }
+  .rail-line { display: none }
+  .rating { padding: 8px 14px 8px 8px; gap: 10px }
+  .rating-logo { width: 36px; height: 36px }
+  .rating-top b { font-size: 1.3rem }
+}
+
+.hero-ratings { margin: 0 0 30px }
+.hero-stats { margin-top: 44px }
+.rail-toggle { display: none }
+@media (max-width: 640px) {
+  .social-rail { left: 0; border-radius: 0 22px 22px 0; border-left: 0; translate: -100% -50%; transition: translate .45s cubic-bezier(.22, 1, .36, 1) }
+  .social-rail.open { translate: 0 -50% }
+  .hero-ratings { flex-wrap: nowrap; gap: 8px }
+  .hero-ratings .rating { padding: 6px 12px 6px 6px; gap: 8px }
+  .hero-ratings .rating-logo { width: 30px; height: 30px; font-size: 1rem }
+  .hero-ratings .rating-top b { font-size: 1.15rem }
+  .hero-ratings .rating-top small { margin-right: 4px }
+  .hero-ratings .st svg { width: 10px; height: 10px }
+  .hero-ratings .rating-name { font-size: .56rem; letter-spacing: .1em }
+  .rail-toggle { display: grid; place-items: center; position: absolute; left: 100%; top: 50%; translate: 0 -50%; width: 22px; height: 56px; border-radius: 0 12px 12px 0; background: var(--grad); color: var(--ink); font-size: 1.3rem; font-weight: 600; box-shadow: 4px 6px 16px -6px rgba(0, 0, 0, .5) }
+  .hero-ratings { margin-bottom: 26px }
 }
