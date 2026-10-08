@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { site, roles, awards, awardMoments, portfolio, filters, services, courses, testimonials, ratings, nav } from '../data'
+import { site, roles, awards, awardMoments, portfolio, filters, services, courses, testimonials, highlights, ratings, nav } from '../data'
 import { RatingBadge } from './Chrome'
 import { Reveal, SplitText, Eyebrow, Tilt, Icon, Magnetic, scrollTo, WhatsAppIcon } from './ui'
 import { AwardMoments } from './Media'
@@ -68,7 +68,7 @@ export function About() {
         <div className="about-text">
           <Eyebrow>Meet the Artist</Eyebrow>
           <SplitText text="Hello, I'm *Manikeshwari*" />
-          <Reveal delay={0.1}><p>I'm {site.ownerFull}, founder of Swini Makeup Studio in Zaheerabad. For me, makeup isn't about changing who you are — it's about bringing out the most confident, radiant version of you on the days that matter most.</p></Reveal>
+          <Reveal delay={0.1}><p>I'm {site.ownerFull}, founder of Swini Makeup Studio in Hyderabad, Telangana. For me, makeup isn't about changing who you are — it's about bringing out the most confident, radiant version of you on the days that matter most.</p></Reveal>
           <Reveal delay={0.2}><p>From traditional Telugu bridal looks to soft modern glam, every look I create is planned around your skin, your outfit, your jewellery and your story. Alongside working with brides, I train the next generation of artists through hands-on masterclasses and professional permanent makeup (PMU) courses.</p></Reveal>
           <motion.div className="roles" initial="h" whileInView="s" viewport={{ once: true }} transition={{ staggerChildren: 0.08, delayChildren: 0.3 }}>
             {roles.map((r) => <motion.span key={r} variants={{ h: { opacity: 0, scale: 0.6 }, s: { opacity: 1, scale: 1 } }} transition={{ type: 'spring', stiffness: 260, damping: 18 }}>{r}</motion.span>)}
@@ -259,39 +259,60 @@ export function Academy({ onPick }) {
 
 /* ════════════ TESTIMONIALS ════════════ */
 export function Testimonials() {
+  const real = testimonials.filter((t) => !t.name.startsWith('['))
+  const showReviews = real.length > 0
+  const items = showReviews ? real : highlights
   const [i, setI] = useState(0)
   const [dir, setDir] = useState(1)
-  const n = testimonials.length
+  const n = items.length
   const go = (d) => { setDir(d); setI((x) => (x + d + n) % n) }
-  useEffect(() => { const t = setInterval(() => go(1), 5500); return () => clearInterval(t) }, [i])
-  const t = testimonials[i]
+  useEffect(() => { const t = setInterval(() => go(1), 5500); return () => clearInterval(t) }, [i, n])
+  const t = items[i]
+  const reviewLinks = ratings.filter((r) => r.url)
   return (
     <section id="testimonials" className="testimonials">
       <div className="wrap">
         <div className="center">
-          <Eyebrow center>Testimonials</Eyebrow>
-          <SplitText text="Kind words from our *brides*" />
+          <Eyebrow center>{showReviews ? 'Testimonials' : 'Why Brides Choose Us'}</Eyebrow>
+          <SplitText text={showReviews ? 'Kind words from our *brides*' : 'Why brides choose *Swini*'} />
           <Reveal delay={0.1} className="rating-row center-row">
             {ratings.map((r) => <RatingBadge key={r.platform} r={r} light />)}
           </Reveal>
         </div>
         <Reveal className="t-stage" delay={0.1}>
-          <span className="t-quote">“</span>
+          <span className="t-quote">{showReviews ? '“' : '✦'}</span>
           <AnimatePresence mode="wait" custom={dir}>
-            <motion.div key={i} className="t-card" custom={dir}
+            <motion.div key={i} className={`t-card ${showReviews ? '' : 'hl-card'}`} custom={dir}
               initial={{ opacity: 0, x: dir * 80, filter: 'blur(8px)' }} animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, x: dir * -80, filter: 'blur(8px)' }}
               transition={{ duration: 0.6, ease }} drag="x" dragConstraints={{ left: 0, right: 0 }} onDragEnd={(e, info) => { if (info.offset.x < -60) go(1); else if (info.offset.x > 60) go(-1) }}>
-              <div className="stars">{'★★★★★'.split('').map((s, k) => <motion.span key={k} initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 + k * 0.07, type: 'spring' }}>{s}</motion.span>)}</div>
-              <p>{t.text}</p>
-              <div className="who"><span className="av">{t.name.replace(/[[\]]/g, '')[0]}</span><div><b>{t.name}</b><small>{t.role}{t.source && <> · via {t.source}</>}</small></div></div>
+              {showReviews ? (
+                <>
+                  <div className="stars">{'★★★★★'.split('').map((s, k) => <motion.span key={k} initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 + k * 0.07, type: 'spring' }}>{s}</motion.span>)}</div>
+                  <p>{t.text}</p>
+                  <div className="who"><span className="av">{t.name[0]}</span><div><b>{t.name}</b><small>{t.role}{t.source && <> · via {t.source}</>}</small></div></div>
+                </>
+              ) : (
+                <>
+                  <motion.span className="hl-big-ic" initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.15, type: 'spring', stiffness: 160 }}><Icon name={t.icon} size={30} /></motion.span>
+                  <h3>{t.title}</h3>
+                  <p>{t.text}</p>
+                </>
+              )}
             </motion.div>
           </AnimatePresence>
           <div className="t-nav">
             <button onClick={() => go(-1)} aria-label="Previous"><Icon name="left" size={20} /></button>
             <span className="t-count">{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
-            <div className="dots">{testimonials.map((_, k) => <button key={k} className={k === i ? 'on' : ''} onClick={() => { setDir(k > i ? 1 : -1); setI(k) }} aria-label={`Review ${k + 1}`} />)}</div>
+            <div className="dots">{items.map((_, k) => <button key={k} className={k === i ? 'on' : ''} onClick={() => { setDir(k > i ? 1 : -1); setI(k) }} aria-label={`Item ${k + 1}`} />)}</div>
             <button onClick={() => go(1)} aria-label="Next"><Icon name="right" size={20} /></button>
           </div>
+          {reviewLinks.length > 0 && (
+            <div className="review-links">
+              {reviewLinks.map((r) => (
+                <a key={r.platform} href={r.url} target="_blank" rel="noopener" className="btn btn-dark btn-sm">Read our {r.platform} reviews <Icon name="external" size={14} /></a>
+              ))}
+            </div>
+          )}
         </Reveal>
       </div>
     </section>
@@ -370,7 +391,7 @@ export function Footer() {
         <div className="f-grid">
           <div>
             <button className="logo" onClick={() => scrollTo('home')}><span className="logo-mark">S</span><span><b>Swini</b><small>Makeup Studio</small></span></button>
-            <p>Award-winning bridal makeup, hairstyling and beauty academy by {site.owner}, Zaheerabad.</p>
+            <p>Award-winning bridal makeup, hairstyling and beauty academy by {site.owner}, Hyderabad, Telangana.</p>
             <div className="socials">
               <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="insta" size={18} /></a>
               <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"><Icon name="threads" size={18} /></a>

@@ -71,7 +71,7 @@ export default function Hero({ ready }) {
       <div className="hero-glow" />
       <div className="wrap hero-grid">
         <motion.div style={{ y: yText, opacity: fade }}>
-          <motion.span className="eyebrow light" {...a(0.1)}>Zaheerabad · Hyderabad · Telangana</motion.span>
+          <motion.span className="eyebrow light" {...a(0.1)}>Hyderabad · Telangana</motion.span>
           <h1 className="hero-title">
             {['Where', 'every'].map((w, i) => (
               <span className="split-mask" key={w}><motion.span initial={{ y: '110%' }} animate={ready ? { y: 0 } : {}} transition={{ delay: 0.2 + i * 0.08, duration: 1, ease: [0.22, 1, 0.36, 1] }}>{w}&nbsp;</motion.span></span>
@@ -112,7 +112,7 @@ export default function Hero({ ready }) {
           </motion.figure>
           <motion.div className="badge-float" style={{ x: px2, y: py }} initial={{ opacity: 0, x: -40 }} animate={ready ? { opacity: 1, x: 0 } : {}} transition={{ delay: 1.2, duration: 0.8 }}>
             <span className="bf-ic"><Icon name="award" size={30} /></span>
-            <div><b>Best Makeup Artist</b><small>Zaheerabad · IBA 2023</small></div>
+            <div><b>Best Makeup Artist</b><small>Indian Beauty Association · 2023</small></div>
           </motion.div>
           <motion.div className="spin-badge" initial={{ opacity: 0, scale: 0 }} animate={ready ? { opacity: 1, scale: 1 } : {}} transition={{ delay: 1.4, type: 'spring' }}>
             <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" /></defs>

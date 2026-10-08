@@ -8,9 +8,9 @@ export const site = {
   phone: '6281363841',
   phoneDisplay: '+91 62813 63841',
   whatsapp: '916281363841',
-  address: 'Opp. Aravinda Hospital, Zaheerabad, Telangana',
+  address: 'Hyderabad, Telangana', // TODO add full studio address
   timings: 'Mon – Sun · 9:00 AM – 8:00 PM', // TODO confirm with client
-  mapQuery: 'Aravinda Hospital Zaheerabad',
+  mapQuery: 'Swini Makeup Studio Hyderabad Telangana',
   instagramHandle: '@swini_salon_official',
   social: {
     instagram: 'https://www.instagram.com/swini_salon_official/',
@@ -34,12 +34,12 @@ export const stats = [
   { n: 3, suffix: '-Day', label: 'Masterclass' },
 ]
 
-export const roles = ['Celebrity Makeup Artist', 'Pro Hair Stylist', 'Trainer & Mentor', 'Director, SBMS – Zaheerabad']
+export const roles = ['Celebrity Makeup Artist', 'Pro Hair Stylist', 'Trainer & Mentor', 'Director, SBMS']
 
 export const awards = [
   { img: 'award-telangana.jpg', by: '2024 · SwiftNLift Media Group', title: 'Telangana Business Excellence Award', sub: 'Best Makeup Transformation' },
   { img: 'award-beauty-2024.jpg', by: '2024 · Saikala Enterprises', title: 'Beauty Business Excellence Awards', sub: 'Business Supply Chain Excellence' },
-  { img: 'award-iba-2023.jpg', by: '2023 · Indian Beauty Association', title: 'Best Makeup Artist Zaheerabad', sub: 'Pro Makeup Artist & Pro Hair Stylist' },
+  { img: 'award-iba-2023.jpg', by: '2023 · Indian Beauty Association', title: 'Best Makeup Artist', sub: 'Pro Makeup Artist & Pro Hair Stylist' },
   { img: 'award-siiba.jpg', by: '6th Award · SIIBA', title: 'Best Makeup Artist', sub: 'South India Influencer & Bloggers Awards' },
 ]
 
@@ -70,7 +70,7 @@ export const news = [
     outlet: 'SwiftNLift',
     date: '2024',
     title: 'Business Excellence Awards 2024 — Awardees',
-    text: 'The official awardee list from the organisers, including Swini Makeup Studio, Zaheerabad.',
+    text: 'The official awardee list from the organisers, including Swini Makeup Studio.',
     url: 'https://swiftnlift.com/business-excellence-awards-2024-2/',
   },
   {
@@ -150,7 +150,22 @@ export const courses = [
 // url: optional — your Google / Justdial review page link.
 export const ratings = [
   { platform: 'Justdial', score: 4.9, logo: '', url: '' },
-  { platform: 'Google', score: 4.8, logo: '', url: '' },
+  { platform: 'Google', score: 4.8, logo: '', url: 'https://www.google.com/maps/search/?api=1&query=Swini+Makeup+Studio+Hyderabad' },
+]
+
+// Shown in the Testimonials section until real reviews are added below.
+// As soon as the first testimonial no longer starts with '[', the section switches to real reviews.
+export const highlights = [
+  { icon: 'award', title: 'Award-Winning Artistry', text: '6+ industry awards, including the Telangana Business Excellence Award 2024 and Best Makeup Artist from the Indian Beauty Association.' },
+  { icon: 'star', title: 'Rated 4.9 on Justdial', text: 'Highly rated by brides and families on Justdial and 4.8 on Google.' },
+  { icon: 'heart', title: 'Planned Around You', text: 'Every look is designed for your skin, your outfit, your jewellery and your story — never a copy-paste face.' },
+  { icon: 'crown', title: 'Telugu Bridal Specialists', text: 'Traditional muhurtham looks with matha patti, nath and temple jewellery placed just right.' },
+  { icon: 'comb', title: 'Complete Bridal Styling', text: 'Makeup, hairstyling, saree draping and jewellery setting — handled together, start to finish.' },
+  { icon: 'camera', title: 'Photo-Ready Finish', text: 'Long-lasting HD makeup that holds through long ceremonies and looks flawless on camera.' },
+  { icon: 'clock', title: 'Early Muhurtham Bookings', text: 'Early-morning bridal slots so you are ready on time, calm and camera-ready.' },
+  { icon: 'brow', title: 'Certified PMU Artist', text: 'Microblading, powder brows and lip tint by a certified permanent makeup artist and trainer.' },
+  { icon: 'cert', title: 'Trainer & Mentor', text: 'Academy courses with hands-on practice, a certificate and lifetime support for PMU students.' },
+  { icon: 'news', title: 'Featured in the Press', text: 'Recognised in ANI and Business Standard coverage of the Telangana Business Excellence Awards 2024.' },
 ]
 
 // TODO: paste 10 real reviews from Google / Justdial (with the client's permission).
